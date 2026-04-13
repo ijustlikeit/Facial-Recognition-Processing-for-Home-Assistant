@@ -1,0 +1,60 @@
+# facial recognition sensors
+  - trigger:
+      - platform: webhook
+        webhook_id: sensor_ai_face_data
+        local_only: true
+    binary_sensor:
+      - name: face_detected
+        state: on
+        device_class: motion               
+        attributes: 
+           face:  >-
+              {{ trigger.json.face | default('Don') }}
+
+           allow_alarm:  >-
+              {{ trigger.json.allow | default('false') }}              
+              
+           image: >-
+              {{ trigger.json.image | default('DonL.png') }}
+
+           area: >-
+              {{ trigger.json.area | default('foyer') }}
+
+           pct:  >-
+              {{ trigger.json.pct | default(100)}}
+
+           path: >-
+              {{ trigger.json.path | default('www/images/') }}
+        
+           datewithtime: >-
+              {{ trigger.json.datewithtime }}
+              
+           uid:  >-
+              {{ trigger.json.uid | default('abcd1234-01')}}             
+
+        auto_off:
+           seconds: 5        
+    sensor:
+      - name: face_detected_occurrence
+        state: "{{ trigger.json.face | default('DonL.png')  }}"
+        attributes: 
+           image: >-
+              {{ trigger.json.image | default('DonL.png') }}
+              
+           allow_alarm:  >-
+              {{ trigger.json.allow | default('false') }}                   
+
+           area: >-
+              {{ trigger.json.area | default('foyer') }}
+
+           pct:  >-
+              {{ trigger.json.pct | default(100)}}
+
+           path: >-
+              {{ trigger.json.path | default('www/images/') }}
+        
+           datewithtime: >-
+              {{ trigger.json.datewithtime }}
+
+           uid:  >-
+              {{ trigger.json.uid | default('abcd1234-01')}}  
