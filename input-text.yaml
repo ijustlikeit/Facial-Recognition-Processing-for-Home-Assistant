@@ -1,0 +1,7 @@
+  faces_selected:
+    name: Faces we are looking for
+    initial: 'Don,Zach' 
+    
+  face_confidence:
+    name: Classification confidence to achieve
+    initial: '85' 
