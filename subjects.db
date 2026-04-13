@@ -1,0 +1,1 @@
+CREATE TABLE subjects(subject TEXT PRIMARY KEY, subject_name TEXT, allowed_to_use_alarm_by_AI TEXT)
