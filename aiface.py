@@ -184,7 +184,7 @@ class FaceRecognitionEntity:
                log.info(f'Saving file to {latest_save_path} file')
                uid=str(uuid.uuid4())[:8] + "-0"
                await self.create_curl_json( gen_file_name, singletarget, pctout, uid )
-# 7 seconds gives enough time for the sensor.face_detected_occurrence to work properly per occurrence
+# 5 seconds gives enough time for the sensor.face_detected_occurrence to work properly per occurrence
 
                await asyncio.sleep(5)
 
@@ -291,7 +291,6 @@ class FaceRecognitionEntity:
         dest_path_partial = self._local_path_ha
         file_name = gen_file_out
 #        print('Image name ', file_name)
-#        print('LLM vision file name: ', uid_out)
         temp_datetime = datetime.datetime.strptime(self._event_datetime, '%Y%m%d_%H%M%S')
 #        curl_out_date = MST.localize(temp_datetime).strftime('%Y%m%d%H%M%S%z')
         curl_out_date = temp_datetime.replace(tzinfo=ZoneInfo('America/Edmonton')).strftime('%Y%m%d%H%M%S%z')
