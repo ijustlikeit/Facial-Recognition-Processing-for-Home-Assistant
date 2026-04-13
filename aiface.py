@@ -49,12 +49,12 @@ BOX               = "box"
 RED               = (255, 0, 0)
 GREEN             = (0, 128, 0)
 HTTP_OK           = 200
-URL_CURL          = "http://192.168.2.105:8123/api/webhook/sensor_ai_face_data"
-URL_CURL_GORTASH  = "http://192.168.2.79:7215/api/v1/recognition/recognize?limit=0&prediction_count=1&det_prob_threshold=0.5"
+URL_CURL          = "http://192.x.x.x:8123/api/webhook/sensor_ai_face_data"
+URL_CURL_GORTASH  = "http://192.x.x.x:7215/api/v1/recognition/recognize?limit=0&prediction_count=1&det_prob_threshold=0.5"
 # x_api_key         = '5e7a4ecf-65ca-454f-a6e4-064d1ffe719a'
 # x_api_key         = '281a1659-2b7e-498c-bf2f-fd71d417b152'
 # x_api_key         = '9f24ef6e-f04d-4996-9b20-6b2ead86fa13'
-x_api_key         = '2f6f9c69-d429-40df-bc1a-a3adad4ea9be'
+x_api_key         = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx'
 # MST               = pytz.timezone('America/Edmonton')
 # MST               = ZoneInfo('America/Edmonton')
 DBCONN            = sqlite3.connect('/config/ai_objects_db/ai_subjects.db')
@@ -387,7 +387,6 @@ async def main(infile_path, in_image_file, target, confidence, in_image_area, in
 @service
 async def compreface_run_nonblocking(infile_path, in_image_file, target, confidence, in_image_area, in_local_path, in_event_datetime, save_file_folder):
     log.info('starting the script')
-#    if __name__ == "__main__":
     log.info('Main')
     await main(infile_path, in_image_file, target, confidence, in_image_area, in_local_path, in_event_datetime, save_file_folder)
 
