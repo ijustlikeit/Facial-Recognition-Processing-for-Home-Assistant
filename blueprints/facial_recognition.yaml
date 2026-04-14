@@ -1,1 +1,66 @@
-
+blueprint:
+  name: Motion and facial recognition Blueprint v1.0.0
+  author: ijustlikeit
+  homeassistant:
+    min_version: 2025.4.0
+  description:   When motion is detected around an area do face recognition on the
+                 captured image. This will trigger the creation of
+                 sensor.face_detected_occurrence IF the confidence level is achived
+  domain: automation
+  source_url: https://github.com/ijustlikeit/Facial-Recognition-Processing-for-Home-Assistant/blob/main/blueprints/facial_recognition.yaml
+  input:
+    motion_sensor:
+      name: Motion Sensor
+      selector:
+        entity:
+          domain: binary_sensor
+    camera_target:
+      name: Camera
+      selector:
+        entity:
+          domain: camera
+    area_target:
+      name: Area
+      selector:
+        area:
+          multiple: false
+triggers:
+  - entity_id: !input motion_sensor
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 3
+    to:
+      - "on"
+    trigger: state
+    enabled: true
+conditions: []
+actions:
+  - variables:
+      area_target_id: !input area_target
+      area_target_name: "{{area_name(area_target_id)}}"
+      date_time_mask: '{{ now().strftime("%Y%m%d_%H%M%S") }}'
+      file_name_mask: "f{{date_time_mask}}n.jpg"
+  - data:      
+      filename: >-
+        {{ states("input_text.local_camera_capture_path")
+        }}{{area_target_name}}/{{file_name_mask}}
+    target:
+      entity_id: !input camera_target
+    action: camera.snapshot
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - action: pyscript.compreface_run_nonblocking
+    data:
+      infile_path: "{{states('input_text.capture_path')+area_target_name}}/"
+      in_image_file: "{{file_name_mask}}"
+      target: "{{states('input_text.faces_selected') }}"
+      confidence: "{{states('input_text.face_confidence') }}"
+      in_image_area: "{{area_target_name}}"
+      in_local_path: "{{states('input_text.local_file_path') }}"
+      in_event_datetime: "{{date_time_mask}}"
+      save_file_folder: "{{states('input_text.full_ai_stored_path') }}"
+mode: single
