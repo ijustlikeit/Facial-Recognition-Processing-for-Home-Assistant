@@ -13,7 +13,7 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 1. Copy **aiface.py** to pyscript directory in home assistant.
 2. Change the x_api_key in aiface.py to your api key from your installation of CompreFace.
 3. Change the URL_CURL and URL_CURL_COMPRE, in aiface.py to your ip addresses. URL_CURL is your home assistant ip address webhook. URL_CURL_COMPRE is your CompreFace hosted IP address.
-4. Install sqlite database using script **subjects.db**. Place in location **/config/ai_objects_db/ai_subjects.db**
+4. Install sqlite database using script **subjects.db**. Place in location **/config/ai_objects_db/ai_subjects.db**. Entries in this database table could be used arm or disarm your alarm system (by the face was detected). An automation would need to be created by you to allow this.
 5. Create directories /config/www/capture/ and /config/AI. 
 6. Put or merge with your configuration **template_sensor.yaml**.  This will create **sensor.face_detected_occurrence**.
 7. Put or merge with your configuration **input-text.yaml**. This will create **input_text.faces_selected**  and **input_text.face_confidence**. 
