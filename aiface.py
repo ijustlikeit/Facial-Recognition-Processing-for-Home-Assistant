@@ -50,7 +50,7 @@ RED               = (255, 0, 0)
 GREEN             = (0, 128, 0)
 HTTP_OK           = 200
 URL_CURL          = "http://192.x.x.x:8123/api/webhook/sensor_ai_face_data"
-URL_CURL_GORTASH  = "http://192.x.x.x:7215/api/v1/recognition/recognize?limit=0&prediction_count=1&det_prob_threshold=0.5"
+URL_CURL_COMPRE   = "http://192.x.x.x:7215/api/v1/recognition/recognize?limit=0&prediction_count=1&det_prob_threshold=0.5"
 # x_api_key         = '5e7a4ecf-65ca-454f-a6e4-064d1ffe719a'
 # x_api_key         = '281a1659-2b7e-498c-bf2f-fd71d417b152'
 # x_api_key         = '9f24ef6e-f04d-4996-9b20-6b2ead86fa13'
@@ -223,7 +223,7 @@ class FaceRecognitionEntity:
                  'file': ('image.jpg', image_bytes, 'image/jpeg')
                  }
         headers = {'x-api-key': x_api_key} # Removed 'Content-Type'
-        predictions_out = await send_prediction_request(URL_CURL_GORTASH, headers, files)
+        predictions_out = await send_prediction_request(URL_CURL_COMPRE, headers, files)
 
         predictions_raw = eval(predictions_out.text)
 
