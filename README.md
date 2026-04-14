@@ -19,5 +19,6 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 7. Put or merge with your configuration **input-text.yaml**. This will create **input_text.faces_selected**  and **input_text.face_confidence**. 
 8. Put or merge with your configuration **shell_command.yaml**. This will be used to create area subdirectories if necessary.
 9. Restart Home Assistant.
-10. Import blueprint
+10. Import blueprint [https://github.com/ijustlikeit/Facial-Recognition-Processing-for-Home-Assistant/blob/main/blueprints/facial_recognition.yaml]
+11. 
    
