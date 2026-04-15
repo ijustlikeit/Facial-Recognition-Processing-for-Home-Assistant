@@ -41,6 +41,11 @@ actions:
       area_target_name: "{{area_name(area_target_id)}}"
       date_time_mask: '{{ now().strftime("%Y%m%d_%H%M%S") }}'
       file_name_mask: "f{{date_time_mask}}n.jpg"
+  - action: shell_command.make_capture_subdir
+    metadata: {}
+    data:
+      capture_subdir_folder: "{{ states('input_text.local_camera_capture_path')}}{{area_target_name}}/"
+    response_variable: mkdir_discard      
   - data:      
       filename: >-
         {{ states("input_text.local_camera_capture_path")
