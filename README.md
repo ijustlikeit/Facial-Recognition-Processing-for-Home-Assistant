@@ -6,7 +6,7 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 
 1. Install Home Assistant integration Pyscript. [https://hacs-pyscript.readthedocs.io/en/latest/]
 2. Install Home Assistant application Grafana. Add plugin: **dalvany-image-panel** 
-3. Install and setup CompreFace. I recommend you host CompreFace on your own server using Docker compose. Adjust docker compose file with port 7215..this is the port my Pyscript is setup to use. [https://github.com/exadel-inc/CompreFace?tab=readme-ov-file]
+3. Install and setup CompreFace. I recommend you host CompreFace on a separate self hosted server using Docker compose. Adjust docker compose file with port 7215..this is the port my Pyscript is setup to use. [https://github.com/exadel-inc/CompreFace?tab=readme-ov-file]
   
 
 ## Installation. ##
