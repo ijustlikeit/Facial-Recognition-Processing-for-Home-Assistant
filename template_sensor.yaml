@@ -10,9 +10,6 @@
         attributes: 
            face:  >-
               {{ trigger.json.face | default('Don') }}
-
-           allow_alarm:  >-
-              {{ trigger.json.allow | default('false') }}              
               
            image: >-
               {{ trigger.json.image | default('DonL.png') }}
@@ -40,9 +37,6 @@
         attributes: 
            image: >-
               {{ trigger.json.image | default('DonL.png') }}
-              
-           allow_alarm:  >-
-              {{ trigger.json.allow | default('false') }}                   
 
            area: >-
               {{ trigger.json.area | default('foyer') }}
