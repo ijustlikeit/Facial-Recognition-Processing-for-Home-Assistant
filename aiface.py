@@ -10,6 +10,7 @@ version 1.3 Mar 30, 2025
 version 1.4 Aug 04, 2025
 version 2.0 Mar 18, 2026
 version 2.1 Mar 22, 2026
+version 2.2 Apr 15, 2026
 
 rev.1: Changed to try and reduce image size to 800x600 for MMS limit. -May 30th 2022
 rev.2: Removed MMS not being used anymore -Mar 30th 2025
@@ -19,6 +20,7 @@ rev.2.0: Moved from executing on separate machine to Home Assistant machine usin
 rev.2.1: Fixed all blocking calls — added async def to methods, awaited @pyscript_executor calls,
          wrapped blocking I/O (Image.open, save, getsize, os.path.exists/mkdir, DB) in executors,
          fixed bare asyncio.sleep(5) → await asyncio.sleep(5).
+rev.2.2: Uploaded to github   ijustlikeit/Facial-Recognition-Processing-for-Home-Assistant v1.0       
 """
 
 import base64
