@@ -20,5 +20,5 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 8. Restart Home Assistant.
 9. Import blueprint [https://github.com/ijustlikeit/Facial-Recognition-Processing-for-Home-Assistant/blob/main/blueprints/facial_recognition.yaml]
 10. Run blueprint **Motion and facial recognition Blueprint v1.0.0**. Select motion sensor, camera, area in the area you want to do facial recognition. So say you choose the mainfloor, this means you would select a motion and camera entity that are located in your mainfloor area. Save the automation giving it a name and description that is of your choosing. Repeat this step for every area that you wish to do facial recognition in.
-11. Remember to change input_text.faces_selected and input_text.face_confidence to your perferences. The name(s) you place in input_text.faces_selected must match the names you configured in Compreface. ![Screenshot of a Compreface subject names setup.](assets/images/Compreface eg.png)
+11. Remember to change input_text.faces_selected and input_text.face_confidence to your perferences. The name(s) you place in input_text.faces_selected must match the names you configured in Compreface. ![Screenshot of a Compreface subject names setup.](https://assets/images/Compreface eg.png)
    
