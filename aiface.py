@@ -22,7 +22,6 @@ rev.2.1: Fixed all blocking calls — added async def to methods, awaited @pyscr
 """
 
 import base64
-import sqlite3
 import datetime
 # import pytz
 from zoneinfo import ZoneInfo
@@ -57,8 +56,6 @@ URL_CURL_COMPRE   = "http://192.x.x.x:7215/api/v1/recognition/recognize?limit=0&
 x_api_key         = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx'
 # MST               = pytz.timezone('America/Edmonton')
 # MST               = ZoneInfo('America/Edmonton')
-DBCONN            = sqlite3.connect('/config/ai_objects_db/ai_subjects.db')
-CURSOR            = DBCONN.cursor()
 WIDTH             = 1080
 HEIGHT            = 720
 MIN_WIDTH	  = 800
@@ -295,14 +292,9 @@ class FaceRecognitionEntity:
 #        curl_out_date = MST.localize(temp_datetime).strftime('%Y%m%d%H%M%S%z')
         curl_out_date = temp_datetime.replace(tzinfo=ZoneInfo('America/Edmonton')).strftime('%Y%m%d%H%M%S%z')
         dest_path_main = dest_path_partial + target_found + '/'
-        target_subj = tuple([target_found])
-        sql = "SELECT allowed_to_use_alarm_by_AI TEXT FROM subjects WHERE subject = ?"
-        sql_result = await db_execute_query(sql, target_subj)
-        allowed_by_facial_recog = sql_result[0][0]
-
 
         log.info(f'prepayload {uid_out}')
-        payload = '{"image":"'+file_name+'", "face":"'+target_found+'", "allow":"'+allowed_by_facial_recog+'", "area":"'+self._area+'", "pct":"'+str(pct_out)+'", "path":"'+dest_path_main+'", "datewithtime":"'+curl_out_date+'", "uid":"'+str(uid_out)+'"}'
+        payload = '{"image":"'+file_name+'", "face":"'+target_found+'",  "area":"'+self._area+'", "pct":"'+str(pct_out)+'", "path":"'+dest_path_main+'", "datewithtime":"'+curl_out_date+'", "uid":"'+str(uid_out)+'"}'
 
 #        print('Json data: ', payload)
         log.info(f'Payload: {payload}')
@@ -321,18 +313,6 @@ def load_image_bytes(path):
         img_byte_arr.seek(0)
         return img_byte_arr.getvalue()
 
-@pyscript_executor
-def db_execute_query(sql, params):
-    """Execute a DB query and return results (runs in thread pool)."""
-    conn = sqlite3.connect('/config/ai_objects_db/ai_subjects.db')
-    cursor = conn.cursor()
-    try:
-        cursor.execute(sql, params)
-        results = cursor.fetchall()
-        conn.commit()
-        return results
-    finally:
-        conn.close() # Always close the connection
 @pyscript_executor
 def send_prediction_request(url, headers, files):
     """Sends POST request to the prediction API."""
