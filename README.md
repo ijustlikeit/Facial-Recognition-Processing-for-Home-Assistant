@@ -23,5 +23,5 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 11. Remember to change input_text.faces_selected and input_text.face_confidence to your perferences. The name(s) you place in input_text.faces_selected must match the Subjects names you configured in Compreface. Example. ![Screenshot of a Compreface subject names setup.](./ComprefaceEX.png)
 12. After a successful recognition you will have the **sensor.face_detected_occurrence** populated and ready to use.
 13.  Here is one possible use of sensor.face_detected_occurrence. See automation **Facial recognition sample.yaml**.
-14.  If you installed the optional step 2 prerequisite for Grafana you can setup and view your face detections. Here is a sample: ![Screenshot Granfana](/GranfanaExample.png)
+14.  If you installed the optional step 2 prerequisite for Grafana you can setup and view your face detections. Here is a sample: ![Screenshot Granfana](./GranfanaExample.png)
 
