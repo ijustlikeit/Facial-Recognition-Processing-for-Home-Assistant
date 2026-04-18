@@ -1,0 +1,165 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "A list of images for the selected name",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 22,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "dfj789lc3ug3ka"
+      },
+      "description": "Images of Don detected.",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "alt_field": "",
+        "autofit": false,
+        "baseUrl": "https://youraddress.com/local/AI/Don/",
+        "height": "95",
+        "icon_field": "face_image",
+        "open_url": {
+          "base_url": "https://youraddress.com/local/AI/Don/",
+          "enable": true,
+          "metric_field": "face_image",
+          "open_in_tab": true,
+          "suffix": ""
+        },
+        "overlay": {
+          "bindings": {
+            "bindings": [],
+            "has_text": true,
+            "unbounded": "#66666620"
+          },
+          "field": "",
+          "height": {
+            "size": 5,
+            "unit": "%"
+          },
+          "position": "Top right",
+          "width": {
+            "size": 5,
+            "unit": "%"
+          }
+        },
+        "shared_cross_hair": {
+          "backgroundColor": "#FFFFFF10",
+          "borderColor": "#FFFFFF20"
+        },
+        "singleFill": true,
+        "slideshow": {
+          "duration": 5000,
+          "enable": false,
+          "infinite": true,
+          "pauseOnHover": true,
+          "transition": "Slide",
+          "transition_duration": 1000
+        },
+        "tooltip": true,
+        "tooltip_date_elapsed": false,
+        "tooltip_field": "image_tip",
+        "tooltip_include_date": false,
+        "tooltip_include_field": true,
+        "underline": {
+          "bindings": {
+            "bindings": [],
+            "has_text": true,
+            "unbounded": "#CCCCDCFF"
+          },
+          "bindings_field": "",
+          "field": "",
+          "text_align": "left",
+          "text_size": "14"
+        },
+        "width": "95"
+      },
+      "pluginVersion": "5.0.0",
+      "targets": [
+        {
+          "columns": [],
+          "computed_columns": [],
+          "csv_options": {
+            "skip_empty_lines": true,
+            "skip_lines_with_error": true
+          },
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "dfj789lc3ug3ka"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "hide": false,
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "uql",
+          "uql": "parse-csv --delimiter '_'\r\n|project \"facelabel\" , \"name\", \"area\", \"pctlabel\", \"nbr\", \"date\", \"timejpg\"\r\n| extend \"face_image\"=strcat(\"facelabel\", '_', \"name\",'_', \"area\", '_pct_', \"nbr\", '_', \"date\", '_', \"timejpg\")\r\n| extend \"image_tip\"=strcat(\"name\", ' has been spotted in the ', \"area\", ' area. The date is ', \"date\", '.' )\r\n\r\n",
+          "url": "http://192.168.2.xxx:8123/local/grafana/don.csv",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Don",
+      "type": "dalvany-image-panel"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 42,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "has been spotted in the",
+          "value": "has been spotted in the"
+        },
+        "description": "",
+        "hide": 2,
+        "name": "spotted",
+        "query": "has been spotted in the",
+        "skipUrlSync": true,
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "List of detected faces by name",
+  "uid": "adl9xc8",
+  "version": 13
+}
