@@ -1,0 +1,36 @@
+alias: Face detected by Compreface with followup notifications
+description: >-
+  Send message to phone with details of recognized face based on state sensor.
+triggers:
+  - entity_id: sensor.face_detected_occurrence
+    trigger: state
+conditions: []
+actions:
+  - variables:
+      name_of_person_detected: "{{trigger.to_state.state}}"
+      area_person_was_detected: "{{trigger.to_state.attributes.area}}"
+      image_of_person_detected: "{{trigger.to_state.attributes.image}}"
+  - target:
+      entity_id: input_text.message_body_facial
+    data:
+      value: >-
+        {{ name_of_person_detected }} has been spotted in the {{
+        area_person_was_detected }} area.
+    action: input_text.set_value
+  - target:
+      entity_id: input_text.phone_file_facial
+    data:
+      value: >-
+        {{ states("input_text.phone_media_path") }}{{    
+        name_of_person_detected }}/{{     image_of_person_detected }}
+    action: input_text.set_value
+  - data:
+      message: "{{states(\"input_text.message_body_facial\") }}"
+      data:
+        image: "{{states(\"input_text.phone_file_facial\") }}"
+        ttl: 0
+        priority: high
+    action: notify.your_mobile_phone
+    enabled: true
+mode: queued
+max: 3
