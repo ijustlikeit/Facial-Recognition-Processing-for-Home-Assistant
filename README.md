@@ -5,7 +5,7 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 ## Prerequisites. ##
 
 1. Install Home Assistant integration Pyscript. [https://hacs-pyscript.readthedocs.io/en/latest/]
-2. Install Home Assistant application Grafana. Add plugin: **dalvany-image-panel** 
+2. Optional. Install Home Assistant application Grafana. Add plugins: **dalvany-image-panel**  **Grafana Infinity Datasource**
 3. Install and setup CompreFace. I recommend you host CompreFace on a separate self hosted server using Docker compose. Adjust docker compose file with port 7215..this is the port my Pyscript is setup to use. [https://github.com/exadel-inc/CompreFace?tab=readme-ov-file]
   
 
@@ -22,4 +22,5 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 10. Run blueprint **Motion and facial recognition Blueprint v1.0.0**. Select motion sensor, camera, area in the area you want to do facial recognition. So say you choose the mainfloor, this means you would select a motion and camera entity that are located in your mainfloor area. Save the automation giving it a name and description that is of your choosing. Repeat this step for every area that you wish to do facial recognition in.
 11. Remember to change input_text.faces_selected and input_text.face_confidence to your perferences. The name(s) you place in input_text.faces_selected must match the Subjects names you configured in Compreface. Example. ![Screenshot of a Compreface subject names setup.](./ComprefaceEX.png)
 After a successful recognition you will have the **sensor.face_detected_occurrence** populated and ready to use.     
-So for example you may send a notification to your phone with a picture.
+Here is one possible use of sensor.face_detected_occurrence. See automation **Facial recognition sample.yaml**.
+If you installed the optional step 2 prerequisite for Grafana you can setup and view your face detections. Here is a sample:
