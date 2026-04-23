@@ -15,7 +15,8 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 3. Change the URL_CURL and URL_CURL_COMPRE, in aiface.py to your ip addresses. URL_CURL is your home assistant ip address webhook. URL_CURL_COMPRE is your CompreFace hosted IP address.
 4. Create directories /config/www/capture/ and /config/AI. 
 5. Put or merge with your configuration **template_sensor.yaml**.  This will create **sensor.face_detected_occurrence**.
-6. Put or merge with your configuration **input-text.yaml**. This will create **input_text.faces_selected**  and **input_text.face_confidence**. 
+6. Put or merge with your configuration **input-text.yaml**. This will create **input_text.faces_selected**, **input_text.face_confidence**,
+**input_text.capture_path**, and **input_text.local_camera_capture_path**. 
 7. Put or merge with your configuration **shell_command.yaml**. This will be used to create area subdirectories if necessary.
 8. Restart Home Assistant.
 9. Import blueprint [https://github.com/ijustlikeit/Facial-Recognition-Processing-for-Home-Assistant/blob/main/blueprints/facial_recognition.yaml]
@@ -23,13 +24,14 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 11. Remember to change input_text.faces_selected and input_text.face_confidence to your perferences. The name(s) you place in input_text.faces_selected must match the Subjects names you configured in Compreface. Example. ![Screenshot of a Compreface subject names setup.](./ComprefaceEX.png)
 12. After a successful recognition you will have the **sensor.face_detected_occurrence** populated and ready to use.
 13.  Here is one possible use of sensor.face_detected_occurrence. See automation **Facial recognition sample.yaml**.
-14.  If you installed the optional step 2 prerequisite for Grafana you can setup and view your face detections using a dashboard created in Grafana. Here is a sample dasshboard: ![Screenshot Granfana](/GrafanaExample.png)
+14.  If you installed the optional step 2 prerequisite for Grafana you can setup and view your face detections using a dashboard created in Grafana. Here is a sample dashboard: ![Screenshot Granfana](/GrafanaExample.png)
 
 ## Grafana Installation dashboard (optional) ##
 
-1. Go Grafana / Connections / +Add new data source(blue button right corner).
-2. Scroll down to Others and select **Infinity**.
-3. Download and edit **GrafanaFace.json**. Change line 45 and 49 _youraddress.com_ with your external Home assistant IP address. Replace the name **Don** (many spots) with the name you are using in your Compreface setup.  Change line 126 with your local HA IP address. Save.
-4. Import into Grafana **GrafanaFace.json**. Go Home / Dashboards / Import Dashboard .
-5. In Grafana find newly imported dasboard **List of detected faces by name** and go into edit mode. You will have to select the Infinity datasource in the Query --> datasource dropdown box.  Also if you missed any spots where the name _Don_ was used you can edit these to your selected name.
-6. That should be it.
+1. Add the automation from **Grafana_csv.yaml**
+2. Go Grafana / Connections / +Add new data source(blue button right corner).
+3. Scroll down to Others and select **Infinity**.
+4. Download and edit **GrafanaFace.json**. Change line 45 and 49 _youraddress.com_ with your external Home assistant IP address. Replace the name **Don** (many spots) with the name you are using in your Compreface setup.  Change line 126 with your local HA IP address. Save.
+5. Import into Grafana **GrafanaFace.json**. Go Home / Dashboards / Import Dashboard .
+6. In Grafana find newly imported dasboard **List of detected faces by name** and go into edit mode. You will have to select the Infinity datasource in the Query --> datasource dropdown box.  Also if you missed any spots where the name _Don_ was used you can edit these to your selected name.
+7. That should be it.
