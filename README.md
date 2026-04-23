@@ -28,10 +28,11 @@ Home assistant facial recognition processing using pyscript and Exadel CompreFac
 
 ## Grafana Installation dashboard (optional) ##
 
-1. Add the automation from **Grafana_csv.yaml**
-2. Go Grafana / Connections / +Add new data source(blue button right corner).
-3. Scroll down to Others and select **Infinity**.
-4. Download and edit **GrafanaFace.json**. Change line 45 and 49 _youraddress.com_ with your external Home assistant IP address. Replace the name **Don** (many spots) with the name you are using in your Compreface setup.  Change line 126 with your local HA IP address. Save.
-5. Import into Grafana **GrafanaFace.json**. Go Home / Dashboards / Import Dashboard .
-6. In Grafana find newly imported dasboard **List of detected faces by name** and go into edit mode. You will have to select the Infinity datasource in the Query --> datasource dropdown box.  Also if you missed any spots where the name _Don_ was used you can edit these to your selected name.
-7. That should be it.
+1. Copy **list_directory.py** to pyscript directory in home assistant.
+2.  Add the automation from **Grafana_csv.yaml**
+3. Go Grafana / Connections / +Add new data source(blue button right corner).
+4. Scroll down to Others and select **Infinity**.
+5. Download and edit **GrafanaFace.json**. Change line 45 and 49 _youraddress.com_ with your external Home assistant IP address. Replace the name **Don** (many spots) with the name you are using in your Compreface setup.  Change line 126 with your local HA IP address. Save.
+6. Import into Grafana **GrafanaFace.json**. Go Home / Dashboards / Import Dashboard .
+7. In Grafana find newly imported dasboard **List of detected faces by name** and go into edit mode. You will have to select the Infinity datasource in the Query --> datasource dropdown box.  Also if you missed any spots where the name _Don_ was used you can edit these to your selected name.
+8. That should be it.
