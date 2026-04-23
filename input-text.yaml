@@ -5,3 +5,14 @@
   face_confidence:
     name: Classification confidence to achieve
     initial: '85' 
+    
+# AI fixed paths used to indicate where files are stored when captured and detected    
+  capture_path:
+    name: Capture Path for cameras
+    initial: '/config/www/capture/'
+    
+  local_camera_capture_path:
+    name: Local camera capture path 
+    initial: 'www/capture/'
+    
+    
