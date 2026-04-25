@@ -8,7 +8,7 @@ conditions: []
 actions:
   - variables:
       target_dir: "{{trigger.to_state.attributes.path}}"
-      csv_out_file: /config/www/grafana/{{trigger.to_state.state|lower}}.txt
+      csv_out_file: /config/www/grafana/{{trigger.to_state.state|lower}}.csv
   - action: pyscript.list_directory
     data:
       directory: "{{target_dir}}"
